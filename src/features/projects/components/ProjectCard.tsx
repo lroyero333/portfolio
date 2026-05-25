@@ -45,7 +45,7 @@ const getTagStyles = (tag: string, mode: 'light' | 'dark') => {
 };
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const isEn = i18n.language === 'en';
   const title = isEn ? project.titleEN : project.titleES;
   const description = isEn ? project.descriptionEN : project.descriptionES;
