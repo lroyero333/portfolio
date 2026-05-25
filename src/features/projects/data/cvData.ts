@@ -1,4 +1,4 @@
-// ─── INTERFACES DE DATOS STRICTOR ───
+
 export interface WorkExperience {
     id: string;
     roleES: string;
@@ -26,7 +26,6 @@ export interface EducationItem {
     location?: string;
 }
 
-// ─── DATA DE TU HOJA DE VIDA REAL ───
 
 export const workExperiences: WorkExperience[] = [
     {

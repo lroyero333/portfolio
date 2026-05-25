@@ -1,73 +1,42 @@
-# React + TypeScript + Vite
+# LERS.dev | Interactive Professional Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![Material UI](https://img.shields.io/badge/Material--UI-007FFF?style=for-the-badge&logo=mui&logoColor=white)](https://mui.com/)
+[![i18next](https://img.shields.io/badge/i18next-26A69A?style=for-the-badge&logo=i18next&logoColor=white)](https://www.i18next.com/)
 
-Currently, two official plugins are available:
+A premium, modern, fully responsive, and bilingual professional portfolio application. Built with **React 18**, **TypeScript**, and **Material UI (MUI v6)**, using a scalable modular architecture designed to showcase software engineering projects, real-world work experience, and technical certifications.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 🌟 Key Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* **🌐 Full Internationalization (i18n):** Smooth, real-time context and state switching between **English** and **Spanish** using `react-i18next`.
+* **🎨 Premium UI/UX Implementation:** Built under the slate/dark modern design trend featuring custom *glassmorphism* navigation layers, fluid linear hover gradients, and multi-colored identity chips for primary technologies.
+* **📱 Media-Centric Modals (Two-Column Layout):** Interactive dialog structures that retain native portrait aspect ratios for mobile showcases (such as Flutter apps) alongside strict engineering documentation.
+* **⚡ High Performance Ecosystem:** Developed on top of Vite's ultra-fast bundling workflow, running strict path aliasing via `@/*` and asset indexing mapping from public static paths.
+* **📈 Modular CV Architecture:** Centralized domain models decoupling data layer structures from layout views for scalable multi-section tracking (Experience, Skills, Education).
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🛠️ Tech Stack & Architecture
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+* **Core:** React 18 & TypeScript
+* **Build Tool & Bundler:** Vite
+* **UI Components & Styling:** Material UI (MUI v6)
+* **State & Internationalization:** `i18next` + `react-i18next`
+* **Icons:** Material Icons (`@mui/icons-material`)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Folder Structure Overview
+The project follows a clean, modular feature-based architecture to guarantee proper decoupling of concerns:
+```text
+src/
+├── assets/             # Global static media layouts
+├── components/         # Shared global design layouts (Navbar, Base Wrapper)
+├── data/               # Centralized CV static repositories
+├── features/           # Feature-scoped domains
+│   ├── cv/             # Experience, Skill matrices & Education sections
+│   └── projects/       # Grids, dynamic filters & Custom Lightbox cards
+├── locales/            # JSON structured dictionary locales (EN / ES)
+└── theme/              # Custom MUI global design configuration tokens

@@ -13,9 +13,16 @@ export const EducationSection: React.FC = () => {
     return (
         <Container id="educacion" maxWidth="lg" sx={{ py: { xs: 8, md: 12 }, pb: { xs: 12, md: 16 } }}>
 
-            {/* Encabezado */}
             <Box sx={{ textTransform: 'center', mb: 8, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <Typography variant="h3" sx={{ fontWeight: 800, mb: 2, background: 'linear-gradient(45deg, #fff 30%, #94a3b8 90%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', textAlign: 'center' }}>
+                <Typography variant="h3" sx={{
+                    fontWeight: 800, mb: 2,
+                    background: (theme) => theme.palette.mode === 'dark'
+                        ? 'linear-gradient(to right, #ffffff 40%, #94a3b8 100%)'
+                        : 'linear-gradient(to right, #0f172a 40%, #475569 100%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    textAlign: 'center'
+                }}>
                     {t('education.title')}
                 </Typography>
                 <Typography variant="body1" color="text.secondary" sx={{ maxWidth: 650, textAlign: 'center', fontSize: '1.1rem' }}>
@@ -25,7 +32,6 @@ export const EducationSection: React.FC = () => {
 
             <Grid container spacing={5}>
 
-                {/* 🎓 COLUMNA IZQUIERDA: EDUCACIÓN FORMAL */}
                 <Grid size={{ xs: 12, md: 6 }}>
                     <Stack spacing={3}>
                         {academicEducation.map((edu) => {
@@ -34,8 +40,11 @@ export const EducationSection: React.FC = () => {
                                 <Card
                                     key={edu.id}
                                     sx={{
-                                        background: 'linear-gradient(145deg, #1e293b 0%, #111c30 100%)',
-                                        border: '1px solid #334155',
+                                        background: (theme) => theme.palette.mode === 'dark'
+                                            ? 'linear-gradient(145deg, #1e293b 0%, #111c30 100%)'
+                                            : 'linear-gradient(145deg, #ffffff 0%, #f1f5f9 100%)',
+                                        border: '1px solid',
+                                        borderColor: 'divider',
                                         borderRadius: '16px',
                                         p: 2,
                                         position: 'relative'
@@ -47,7 +56,7 @@ export const EducationSection: React.FC = () => {
                                                 <SchoolIcon sx={{ fontSize: 28 }} />
                                             </Box>
                                             <Stack spacing={0.5}>
-                                                <Typography variant="h5" sx={{ fontWeight: 700, color: '#ffffff' }}>
+                                                <Typography variant="h5" sx={{ fontWeight: 700, color: 'text.primary' }}>
                                                     {eduTitle}
                                                 </Typography>
                                                 <Typography variant="body1" color="text.secondary" sx={{ fontWeight: 500 }}>
@@ -65,9 +74,8 @@ export const EducationSection: React.FC = () => {
                     </Stack>
                 </Grid>
 
-                {/* 📜 COLUMNA DERECHA: CERTIFICACIONES Y CURSOS */}
                 <Grid size={{ xs: 12, md: 6 }}>
-                    <Typography variant="h5" sx={{ fontWeight: 700, color: '#ffffff', mb: 3, display: 'flex', alignItems: 'center', gap: 1.5, fontSize: '1.25rem' }}>
+                    <Typography variant="h5" sx={{ fontWeight: 700, color: 'text.primary', mb: 3, display: 'flex', alignItems: 'center', gap: 1.5, fontSize: '1.25rem' }}>
                         <WorkspacePremiumIcon sx={{ color: 'primary.main' }} />
                         {t('education.courses')}
                     </Typography>
@@ -81,24 +89,30 @@ export const EducationSection: React.FC = () => {
                                     sx={{
                                         p: 2.5,
                                         borderRadius: '12px',
-                                        bgcolor: 'rgba(30, 41, 59, 0.3)',
-                                        border: '1px solid #1e293b',
+                                        bgcolor: (theme) => theme.palette.mode === 'dark'
+                                            ? 'rgba(30, 41, 59, 0.3)'
+                                            : 'rgba(226, 232, 240, 0.4)',
+                                        border: '1px solid',
+                                        borderColor: 'divider',
                                         display: 'flex',
                                         justifyContent: 'space-between',
                                         alignItems: 'center',
-                                        transition: 'border-color 0.2s ease',
-                                        '&:hover': { borderColor: '#334155' }
+                                        transition: 'all 0.2s ease',
+                                        '&:hover': {
+                                            borderColor: 'primary.main',
+                                            boxShadow: '0px 4px 12px rgba(56, 189, 248, 0.05)'
+                                        }
                                     }}
                                 >
                                     <Stack spacing={0.5}>
-                                        <Typography variant="body1" sx={{ fontWeight: 600, color: '#f1f5f9' }}>
+                                        <Typography variant="body1" sx={{ fontWeight: 600, color: 'text.primary' }}>
                                             {certTitle}
                                         </Typography>
                                         <Typography variant="body2" color="text.secondary" sx={{ fontSize: '0.85rem' }}>
                                             {cert.institution}
                                         </Typography>
                                     </Stack>
-                                    <Typography variant="caption" sx={{ color: '#64748b', fontWeight: 600, whiteSpace: 'nowrap', ml: 2 }}>
+                                    <Typography variant="caption" sx={{ color: 'text.disabled', fontWeight: 600, whiteSpace: 'nowrap', ml: 2 }}>
                                         {cert.period}
                                     </Typography>
                                 </Box>
@@ -108,6 +122,6 @@ export const EducationSection: React.FC = () => {
                 </Grid>
 
             </Grid>
-        </Container>
+        </Container >
     );
 };

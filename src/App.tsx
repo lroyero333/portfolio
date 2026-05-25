@@ -20,10 +20,8 @@ function App() {
   return (
     <Box sx={{ minHeight: '100vh', bgcolor: 'background.default', position: 'relative', overflow: 'hidden' }}>
 
-      {/* ─── BARRA DE NAVEGACIÓN GLOBAL ─── */}
       <Navbar />
 
-      {/* ─── HERO SECTION ─── */}
       <Box component="header" sx={{ position: 'relative', zIndex: 1, pt: { xs: 18, md: 24 }, pb: { xs: 6, md: 8 } }}>
         <Container maxWidth="md">
           <Stack spacing={3} sx={{ alignItems: 'center', textAlign: 'center' }}>
@@ -51,7 +49,9 @@ function App() {
                 fontWeight: 800,
                 fontSize: { xs: '2.5rem', sm: '3.5rem', md: '4rem' },
                 letterSpacing: '-0.02em',
-                background: 'linear-gradient(to right, #ffffff 40%, #94a3b8 100%)',
+                background: (theme) => theme.palette.mode === 'dark'
+                  ? 'linear-gradient(to right, #ffffff 40%, #94a3b8 100%)'
+                  : 'linear-gradient(to right, #0f172a 40%, #475569 100%)', 
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
               }}
@@ -89,19 +89,14 @@ function App() {
         </Container>
       </Box>
 
-      {/* ─── CUERPO PRINCIPAL DEL PORTAFOLIO ─── */}
       <Box component="main" sx={{ position: 'relative', zIndex: 1 }}>
 
-        {/* Grilla de Proyectos Destacados */}
         <ProjectGrid />
 
-        {/* Línea de Tiempo de Experiencia Laboral */}
         <ExperienceTimeline />
 
-        {/* Grilla de Habilidades Técnicas */}
         <SkillsGrid />
 
-        {/* Sección de Educación y Cursos */}
         <EducationSection />
 
       </Box>

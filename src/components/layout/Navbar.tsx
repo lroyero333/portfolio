@@ -7,10 +7,20 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 import { useTranslation } from 'react-i18next';
+import { IconButton, useColorScheme, alpha } from '@mui/material';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+import LanguageIcon from '@mui/icons-material/Language';
 
 export const Navbar: React.FC = () => {
+    const { mode, setMode } = useColorScheme();
     const { t, i18n } = useTranslation();
     const [isScrolled, setIsScrolled] = useState(false);
+
+    const toggleLanguage = () => {
+        const nextLang = i18n.language === 'en' ? 'es' : 'en';
+        i18n.changeLanguage(nextLang);
+    };
 
     useEffect(() => {
         const handleScroll = () => {
@@ -20,10 +30,7 @@ export const Navbar: React.FC = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    const toggleLanguage = () => {
-        const nextLang = i18n.language === 'es' ? 'en' : 'es';
-        i18n.changeLanguage(nextLang);
-    };
+    if (!mode) return null;
 
     const scrollToSection = (id: string) => {
         document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -34,19 +41,21 @@ export const Navbar: React.FC = () => {
             position="fixed"
             elevation={0}
             sx={{
-                background: isScrolled ? 'rgba(15, 23, 42, 0.75)' : 'transparent',
+                background: (theme) => isScrolled
+                    ? alpha(theme.palette.background.paper, 0.8)
+                    : 'transparent',
                 backdropFilter: isScrolled ? 'blur(12px)' : 'none',
                 WebkitBackdropFilter: isScrolled ? 'blur(12px)' : 'none',
                 borderBottom: '1px solid',
-                borderColor: isScrolled ? 'rgba(51, 65, 85, 0.5)' : 'transparent',
+                borderColor: isScrolled ? 'divider' : 'transparent',
                 transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                 zIndex: 1100,
             }}
         >
             <Container maxWidth="lg">
-                <Toolbar disableGutters sx={{ justifyContent: 'space-between', minHeight: '70px' }}>
+                <Toolbar disableGutters sx={{ minHeight: '70px', justifyContent: 'space-between' }}>
 
-                    {/* Logo / Iniciales */}
+                    {/* LOGO DINÁMICO */}
                     <Typography
                         variant="h6"
                         component="div"
@@ -55,7 +64,9 @@ export const Navbar: React.FC = () => {
                             fontWeight: 800,
                             fontFamily: '"Poppins", sans-serif',
                             cursor: 'pointer',
-                            background: 'linear-gradient(45deg, #38bdf8 30%, #fb7185 90%)',
+                            background: mode === 'dark'
+                                ? 'linear-gradient(45deg, #d946ef 30%, #a855f7 90%)'
+                                : 'linear-gradient(45deg, #a21caf 30%, #6b21a8 90%)',
                             WebkitBackgroundClip: 'text',
                             WebkitTextFillColor: 'transparent',
                             letterSpacing: '-0.02em'
@@ -64,45 +75,62 @@ export const Navbar: React.FC = () => {
                         LERS.dev
                     </Typography>
 
-                    {/* Menú de Navegación Central */}
                     <Stack direction="row" spacing={1} sx={{ display: { xs: 'none', md: 'flex' } }}>
-                        <Button color="inherit" onClick={() => scrollToSection('proyectos')} sx={{ fontWeight: 600, color: 'text.secondary', '&:hover': { color: 'text.primary' } }}>
-                            {t('nav.projects')}
-                        </Button>
-                        <Button color="inherit" onClick={() => scrollToSection('experiencia')} sx={{ fontWeight: 600, color: 'text.secondary', '&:hover': { color: 'text.primary' } }}>
-                            {t('nav.experience')}
-                        </Button>
-                        <Button color="inherit" onClick={() => scrollToSection('habilidades')} sx={{ fontWeight: 600, color: 'text.secondary', '&:hover': { color: 'text.primary' } }}>
-                            {t('nav.skills')}
-                        </Button>
-                        <Button color="inherit" onClick={() => scrollToSection('educacion')} sx={{ fontWeight: 600, color: 'text.secondary', '&:hover': { color: 'text.primary' } }}>
-                            {t('nav.education')}
-                        </Button>
+                        {['projects', 'experience', 'skills', 'education'].map((key) => {
+                            const sectionIds: Record<string, string> = {
+                                projects: 'proyectos',
+                                experience: 'experiencia',
+                                skills: 'habilidades',
+                                education: 'educacion'
+                            };
+                            return (
+                                <Button
+                                    key={key}
+                                    color="inherit"
+                                    onClick={() => scrollToSection(sectionIds[key])}
+                                    sx={{
+                                        fontWeight: 600,
+                                        color: 'text.secondary',
+                                        '&:hover': { color: 'text.primary' }
+                                    }}
+                                >
+                                    {t(`nav.${key}`)}
+                                </Button>
+                            );
+                        })}
                     </Stack>
 
-                    {/* Selector de Idioma Minimalista */}
-                    <Box>
-                        <Button
-                            variant="text"
-                            onClick={toggleLanguage}
-                            size="small"
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+
+                        <IconButton
+                            onClick={() => setMode(mode === 'dark' ? 'light' : 'dark')}
+                            color="primary"
                             sx={{
-                                fontWeight: 700,
+                                border: '1px solid',
+                                borderColor: 'divider',
                                 borderRadius: '8px',
-                                color: 'primary.main',
-                                border: '1px solid rgba(56, 189, 248, 0.2)',
-                                backgroundColor: 'rgba(56, 189, 248, 0.04)',
-                                padding: '4px 12px',
-                                '&:hover': {
-                                    backgroundColor: 'rgba(56, 189, 248, 0.1)',
-                                    borderColor: 'primary.main'
-                                }
+                                p: 1,
+                                color: 'text.primary'
                             }}
                         >
-                            {i18n.language === 'es' ? 'EN' : 'ES'}
-                        </Button>
-                    </Box>
+                            {mode === 'dark' ? <LightModeIcon sx={{ fontSize: 20 }} /> : <DarkModeIcon sx={{ fontSize: 20 }} />}
+                        </IconButton>
 
+                        <Button
+                            variant="outlined"
+                            onClick={toggleLanguage}
+                            startIcon={<LanguageIcon />}
+                            sx={{
+                                fontWeight: 600,
+                                borderColor: 'divider',
+                                color: 'text.primary',
+                                '&:hover': { borderColor: 'primary.main' }
+                            }}
+                        >
+                            {i18n.language === 'en' ? 'ES' : 'EN'}
+                        </Button>
+
+                    </Box>
                 </Toolbar>
             </Container>
         </AppBar>

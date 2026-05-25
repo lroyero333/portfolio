@@ -6,6 +6,7 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import { useTranslation } from 'react-i18next';
+import { alpha } from '@mui/material/styles';
 import { myProjects } from '../data/projectsData';
 import { ProjectCard } from './ProjectCard';
 
@@ -24,7 +25,7 @@ export const ProjectGrid: React.FC = () => {
     });
 
     return (
-        <Container maxWidth="lg" sx={{ py: { xs: 6, md: 10 } }}>
+        <Container id="proyectos" maxWidth="lg" sx={{ py: { xs: 6, md: 10 } }}>
 
             <Box
                 sx={{
@@ -41,7 +42,9 @@ export const ProjectGrid: React.FC = () => {
                     sx={{
                         fontWeight: 800,
                         mb: 2,
-                        background: 'linear-gradient(45deg, #fff 30%, #a2a8b3 90%)',
+                        background: (theme) => theme.palette.mode === 'dark'
+                            ? 'linear-gradient(to right, #ffffff 40%, #94a3b8 100%)'
+                            : 'linear-gradient(to right, #0f172a 40%, #475569 100%)',
                         WebkitBackgroundClip: 'text',
                         WebkitTextFillColor: 'transparent',
                         textAlign: 'center'
@@ -63,7 +66,6 @@ export const ProjectGrid: React.FC = () => {
                     {t('projects.subtitle')}
                 </Typography>
 
-                {/* ─── Sistema de Filtros Profesional bilingüe ─── */}
                 <Box
                     sx={{
                         display: 'flex',
@@ -79,13 +81,15 @@ export const ProjectGrid: React.FC = () => {
                         onChange={handleTabChange}
                         centered
                         sx={{
-                            background: 'background.paper',
+                            background: (theme) => theme.palette.background.paper,
                             padding: '6px',
                             borderRadius: '999px',
                             display: 'inline-flex',
                             border: '1px solid',
                             borderColor: 'divider',
-                            boxShadow: '0 4px 14px rgba(15,23,42,0.1)',
+                            boxShadow: (theme) => theme.palette.mode === 'dark'
+                                ? '0 4px 14px rgba(15,23,42,0.2)'
+                                : '0 4px 14px rgba(148,163,184,0.06)',
                             minHeight: '48px',
                             '& .MuiTabs-scroller': {
                                 overflow: 'visible !important'
@@ -93,7 +97,7 @@ export const ProjectGrid: React.FC = () => {
                             '& .MuiTabs-indicator': {
                                 height: '100%',
                                 borderRadius: '999px',
-                                backgroundColor: 'rgba(56, 189, 248, 0.1)',
+                                backgroundColor: (theme) => alpha(theme.palette.primary.main, 0.1),
                                 zIndex: 0,
                                 transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
                             },
@@ -109,13 +113,13 @@ export const ProjectGrid: React.FC = () => {
                                 zIndex: 1,
                                 minHeight: '36px',
                                 padding: '8px 24px',
-                                transition: 'color 0.2s ease',
+                                transition: 'all 0.2s ease',
                                 '&.Mui-selected': {
                                     color: 'primary.main',
                                 },
                                 '&:hover:not(.Mui-selected)': {
                                     color: 'text.primary',
-                                    backgroundColor: 'rgba(255, 255, 255, 0.03)'
+                                    backgroundColor: (theme) => theme.palette.action.hover
                                 }
                             }
                         }}
@@ -128,7 +132,6 @@ export const ProjectGrid: React.FC = () => {
                 </Box>
             </Box>
 
-            {/* ─── Grilla responsiva usando Grid2 ─── */}
             <Grid container spacing={4}>
                 {filteredProjects.map((project) => (
                     <Grid
@@ -139,7 +142,6 @@ export const ProjectGrid: React.FC = () => {
                     </Grid>
                 ))}
 
-                {/* ─── Estado Vacío Traducido ─── */}
                 {filteredProjects.length === 0 && (
                     <Box
                         sx={{

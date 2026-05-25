@@ -1,27 +1,47 @@
 import { createTheme } from '@mui/material/styles';
 
-const lightTheme = createTheme({
-  // Mapeamos tus colores al sistema de paleta oficial de MUI
-  palette: {
-    mode: 'dark', // Cambiamos a 'dark' porque tus colores (#0f172a) son oscuros y así el texto se adapta automáticamente
-    primary: {
-      main: '#38bdf8', // Tu color primary
+export const theme = createTheme({
+  colorSchemes: {
+    dark: {
+      palette: {
+        primary: {
+          main: '#d946ef',
+        },
+        secondary: {
+          main: '#a855f7',
+        },
+        background: {
+          default: '#090514',
+          paper: '#140e28',
+        },
+        text: {
+          primary: '#f5f3ff',
+          secondary: '#c084fc',
+        },
+        divider: '#2e1065',
+      },
     },
-    secondary: {
-      main: '#fb7185', // Tu color secondary
+    light: {
+      palette: {
+        primary: {
+          main: '#a21caf',
+        },
+        secondary: {
+          main: '#6b21a8',
+        },
+        background: {
+          default: '#fafafa',
+          paper: '#ffffff',
+        },
+        text: {
+          primary: '#1e1b4b',
+          secondary: '#581c87',
+        },
+        divider: '#f3e8ff',
+      },
     },
-    background: {
-      default: '#0f172a', // Tu color background (Slate 900)
-      paper: '#1e293b',   // Tu color surface (Slate 800)
-    },
-    text: {
-      primary: '#e2e8f0',   // Tu color text
-      secondary: '#94a3b8', // Tu color muted
-    },
-    divider: '#334155', // Tu color border
   },
 
-  // Mapeamos tus fuentes y tamaños tipográficos
   typography: {
     fontFamily: "'Inter', system-ui, sans-serif",
     h4: {
@@ -34,29 +54,32 @@ const lightTheme = createTheme({
     },
   },
 
-  // Customización global de componentes usando tus bordes (radii) y sombras
   components: {
     MuiCard: {
       styleOverrides: {
-        root: {
-          borderRadius: 16, // Tu radii.md
-          backgroundColor: '#1e293b',
-          border: '1px solid #334155', // Tu border
-          boxShadow: '0 4px 14px rgba(15,23,42,0.1)', // Tu shadow.md
-        },
+        root: ({ theme }) => ({
+          borderRadius: 16,
+          backgroundColor: theme.palette.background.paper,
+          border: '1px solid',
+          borderColor: theme.palette.divider,
+          boxShadow: theme.palette.mode === 'dark'
+            ? '0 4px 20px rgba(0,0,0,0.5)'
+            : '0 4px 14px rgba(15,23,42,0.04)',
+          transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+        }),
       },
     },
     MuiChip: {
       styleOverrides: {
         root: {
-          borderRadius: 8, // Tu radii.sm
+          borderRadius: 8,
         },
       },
     },
     MuiButton: {
       styleOverrides: {
         root: {
-          borderRadius: 8, // Tu radii.sm
+          borderRadius: 8,
           textTransform: 'none',
         },
       },
@@ -64,4 +87,4 @@ const lightTheme = createTheme({
   },
 });
 
-export default lightTheme;
+export default theme;
