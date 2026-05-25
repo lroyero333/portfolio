@@ -1,0 +1,40 @@
+{
+    "hero": {
+        "status": "Available for Projects",
+        "title": "Software Engineer",
+        "description": "Specialized in developing robust mobile applications with Flutter and reactive web platforms. Focused on clean architecture, optimal performance, and production-ready code.",
+        "btnProjects": "Explore Projects",
+        "btnCv": "Get CV"
+    },
+    "projects": {
+        "title": "Featured Projects",
+        "subtitle": "A sample of the systems I have designed and developed, applying clean architecture and software engineering best practices.",
+        "tabs": {
+            "all": "All",
+            "web": "Web Development",
+            "mobile": "Mobile Apps",
+            "audit": "Technical Audit"
+        },
+        "empty": "No projects in this category",
+        "emptyDesc": "New systems under development will be uploaded soon."
+    },
+    "nav": {
+        "projects": "Projects",
+        "experience": "Experience",
+        "skills": "Skills",
+        "education": "Education"
+    },
+    "experience": {
+        "title": "Work Experience",
+        "subtitle": "My track record designing and implementing robust software solutions for web platforms and mobile ecosystems."
+    },
+    "skills": {
+        "title": "Technical Skills",
+        "subtitle": "The stack of technologies, frameworks, and engineering methodologies I use to bring production-ready software products to life."
+    },
+    "education": {
+        "title": "Education & Certifications",
+        "subtitle": "My academic background as a systems engineer and key industry certifications.",
+        "courses": "Featured Courses"
+    }
+}

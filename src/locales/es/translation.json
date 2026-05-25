@@ -1,0 +1,40 @@
+{
+    "hero": {
+        "status": "Disponible para Proyectos",
+        "title": "Ingeniero de Software",
+        "description": "Especializado en el desarrollo de aplicaciones móviles robustas con Flutter y plataformas web reactivas. Enfocado en la arquitectura limpia, rendimiento óptimo y código digno de producción.",
+        "btnProjects": "Explorar Proyectos",
+        "btnCv": "Obtener CV"
+    },
+    "projects": {
+        "title": "Proyectos Destacados",
+        "subtitle": "Una muestra de los sistemas que he diseñado y desarrollado, aplicando arquitectura limpia y buenas prácticas de ingeniería de software.",
+        "tabs": {
+            "all": "Todos",
+            "web": "Desarrollo Web",
+            "mobile": "Apps Móviles",
+            "audit": "Auditoría Técnica"
+        },
+        "empty": "Sin proyectos en esta categoría",
+        "emptyDesc": "Próximamente estaré subiendo nuevos sistemas desarrollados."
+    },
+    "nav": {
+        "projects": "Proyectos",
+        "experience": "Experiencia",
+        "skills": "Habilidades",
+        "education": "Educación"
+    },
+    "experience": {
+        "title": "Experiencia Laboral",
+        "subtitle": "Mi trayectoria diseñando e implementando soluciones de software robustas para plataformas web y ecosistemas móviles."
+    },
+    "skills": {
+        "title": "Habilidades Técnicas",
+        "subtitle": "El conjunto de tecnologías, frameworks y metodologías de ingeniería que utilizo para dar vida a productos de software dignos de producción."
+    },
+    "education": {
+        "title": "Educación y Certificaciones",
+        "subtitle": "Mi formación académica como ingeniero de sistemas y certificaciones de la industria tecnológica.",
+        "courses": "Cursos Destacados"
+    }
+}
